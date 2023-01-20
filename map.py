@@ -148,7 +148,7 @@ class Map:
 
         Returns
         -------
-        list
+        list[tuple[int, int]]
             list of all island coordinates points
         """
 
@@ -161,7 +161,7 @@ class Map:
                         island_tiles += self._island_recursive_finder(x, y, visited)
         return island_tiles
 
-    def islands_count(self):
+    def islands_count(self) -> int:
         """
         Return number of islands present on the map grid.
 
@@ -180,20 +180,20 @@ class Map:
         return len(islands)
 
     @staticmethod
-    def _check_if_not_visited_island(point: tuple[int, int], islands: list[list[tuple[int, int]]]):
+    def _check_if_not_visited_island(point: tuple[int, int], islands: list[list[tuple[int, int]]]) -> bool:
         """
         Checks if point on grid does not belong to already discovered islands.
 
         Parameters
         ----------
         point : tuple[int, int]
-            island search starting column index
+            (x , y) coordinates on grid to be checked
         islands : list[list[tuple[int, int]]]
-            island search starting row index
+            list of disocvered islands to search among
 
         Returns
         -------
-        list
-            list of all island coordinates points
+        bool
+            if point is present on any island from the list
         """
         return all(point not in island for island in islands)
