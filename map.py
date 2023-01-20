@@ -1,3 +1,5 @@
+from exceptions import InvalidGridException
+
 VALID_VALUES = ['0', '1']
 LAND = 1
 WATER = 0
@@ -19,7 +21,7 @@ class Map:
             self._convert_grid_to_int()
 
         self.rows_count = len(self.rows)
-        self.cols_count = len(self.rows[0])
+        self.cols_count = len(self.rows[0]) if self.rows_count else 0
 
     def __str__(self):
         representation = ''
@@ -30,7 +32,8 @@ class Map:
     def _init_grid_from_file(self, file):
         """ Initialises grid with string values """
         for line in file.readlines():
-            self.rows.append([*line.rstrip('\n')])
+            if line != '\n':
+                self.rows.append([*line.rstrip('\n')])
 
     def _check_if_valid(self) -> bool:
         """
@@ -40,13 +43,15 @@ class Map:
          """
         columns = list(map(list, zip(*self.rows)))
         if not self._check_if_sizes_equal(columns) or not self._check_if_sizes_equal(self.rows):
-            raise Exception('Provided grid have different columns or rows sizes!')
+            raise InvalidGridException('Provided grid have different columns or rows sizes!')
         if not self._check_if_correct_values(self.rows):
-            raise Exception('Provided grid is not made of zeros and ones!')
+            raise InvalidGridException('Provided grid is not made of zeros and ones!')
         return True
 
     @staticmethod
     def _check_if_sizes_equal(grid: list[list]):
+        if not grid:  # accepting 0 sized grids
+            return True
         first_length = len(grid[0])
         return all(len(line) == first_length for line in grid)
 
