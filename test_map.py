@@ -211,4 +211,4 @@ def test_counting_islands(grid, islands_count):
         map_.rows = grid
         map_.rows_count = len(grid)
         map_.cols_count = len(grid[0]) if map_.rows_count else 0
-        assert map_.count_islands() == islands_count
+        assert map_.islands_count() == islands_count
