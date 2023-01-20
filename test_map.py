@@ -26,7 +26,11 @@ def test_correct_map_initialized_successfully(file):
     ('01\n011', 'different columns or rows sizes!'),
     ('1111\n011', 'different columns or rows sizes!'),
     ('1111\n011', 'different columns or rows sizes!'),
+    ('1111\n0111\n0110\n110', 'different columns or rows sizes!'),
+    ('1111\n0111\n0110\n110', 'different columns or rows sizes!'),
     ('1211\n0111', 'not made of zeros and ones'),
+    ('0000.0\n0111', 'not made of zeros and ones'),
+    ('2\n1', 'not made of zeros and ones'),
 ])
 def test_incorrect_map_raises_proper_exception(file, exception_text):
     with patch("builtins.open", mock_open(read_data=file)):
