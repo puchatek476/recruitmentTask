@@ -40,11 +40,11 @@ def test_correct_map_initialized_successfully_and_have_proper_dimensions(file, d
 
 
 @pytest.mark.parametrize('file, exception_text', [
-    ('01\n011', 'different columns or rows sizes!'),
-    ('1111\n011', 'different columns or rows sizes!'),
-    ('1111\n011', 'different columns or rows sizes!'),
-    ('1111\n0111\n0110\n110', 'different columns or rows sizes!'),
-    ('1111\n0111\n0110\n110', 'different columns or rows sizes!'),
+    ('01\n011', 'different columns or rows sizes'),
+    ('1111\n011', 'different columns or rows sizes'),
+    ('1111\n011', 'different columns or rows sizes'),
+    ('1111\n0111\n0110\n110', 'different columns or rows sizes'),
+    ('1111\n0111\n0110\n110', 'different columns or rows sizes'),
     ('1211\n0111', 'not made of zeros and ones'),
     ('00.0\n0111', 'not made of zeros and ones'),
     ('2\n1', 'not made of zeros and ones'),
@@ -68,10 +68,6 @@ def test_incorrect_map_raises_proper_exception(file, exception_text):
 def test_converting_file_to_ints_grid(file, expected_grid):
     with patch("builtins.open", mock_open(read_data=file)):
         assert Map('some_path').rows == expected_grid
-
-
-def mock_converting_grid(self):
-    self.rows = [[1, 1]]
 
 
 @pytest.mark.parametrize('grid, islands_count', [
