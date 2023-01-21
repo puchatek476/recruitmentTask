@@ -1,4 +1,3 @@
-from io import TextIOWrapper
 from typing import TextIO
 
 from exceptions import InvalidGridException
@@ -153,8 +152,10 @@ class Map:
         """
 
         island_tiles = [(x_start, y_start)]  # adding starting point to output island points
-        for x in range(x_start - 1, x_start + 2):
-            for y in range(y_start - 1, y_start + 2):
+
+        for x in [x_start - 1, x_start, x_start + 1]:
+            # no need to check tiles which appeared in upper row (y_start - 1), already traversed
+            for y in [y_start, y_start + 1]:
                 if self.cols_count > x >= 0 and self.rows_count > y >= 0 and (x, y) not in visited:
                     if self.rows[y][x] == LAND:
                         visited.append((x, y))
