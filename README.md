@@ -10,7 +10,8 @@ e.g.:<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _./docker_build.sh_\
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _./docker_run.sh islands.txt_
 ### Without docker, clear python usage
    * run _simple_run.sh_ script with a path to proper file as the first argument\
-e.g.:<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_./simple_run.sh islands.txt_
+e.g.:<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_./simple_run.sh islands.txt_\
+this app does not require any external python libraries, thus it can be launched directly using python executable 
 
 ## Warnings
 Docker scripts for launching island counter were tested only in Windows 10 using Git Bash console.
